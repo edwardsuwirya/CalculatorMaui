@@ -1,3 +1,5 @@
+using CalcMaui.ViewModels;
+
 namespace CalcMaui;
 
 public partial class CalcPage : ContentPage
@@ -7,13 +9,14 @@ public partial class CalcPage : ContentPage
     private int? _result = 0;
 
     private bool _isDoneCalc;
-    
+
     public CalcPage()
     {
         InitializeComponent();
+        BindingContext = new CalcViewModel();
     }
-    
-      private void ParsingNumber(string sNumber)
+
+    private void ParsingNumber(string sNumber)
     {
         if (sNumber == "R")
         {
@@ -39,26 +42,7 @@ public partial class CalcPage : ContentPage
         _operator = opr;
         ParsingNumber("R");
     }
-
-    private void OnButtonAdditionClick(Object s, EventArgs e)
-    {
-        AssignToNumber("+");
-    }
-
-    private void OnButtonSubtractionClick(Object s, EventArgs e)
-    {
-        AssignToNumber("-");
-    }
-
-    private void OnButtonDivisionClick(Object s, EventArgs e)
-    {
-        AssignToNumber("/");
-    }
-
-    private void OnButtonMultiplicationClick(Object s, EventArgs e)
-    {
-        AssignToNumber("*");
-    }
+    
 
     private void OnButtonEqualClick(Object s, EventArgs e)
     {
@@ -85,56 +69,6 @@ public partial class CalcPage : ContentPage
         _num1 = null;
         _result = 0;
         _isDoneCalc = true;
-    }
-
-    private void OnButtonNum1Click(Object s, EventArgs e)
-    {
-        ParsingNumber("1");
-    }
-
-    private void OnButtonNum2Click(Object s, EventArgs e)
-    {
-        ParsingNumber("2");
-    }
-
-    private void OnButtonNum3Click(Object s, EventArgs e)
-    {
-        ParsingNumber("3");
-    }
-
-    private void OnButtonNum4Click(Object s, EventArgs e)
-    {
-        ParsingNumber("4");
-    }
-
-    private void OnButtonNum5Click(Object s, EventArgs e)
-    {
-        ParsingNumber("5");
-    }
-
-    private void OnButtonNum6Click(Object s, EventArgs e)
-    {
-        ParsingNumber("6");
-    }
-
-    private void OnButtonNum7Click(Object s, EventArgs e)
-    {
-        ParsingNumber("7");
-    }
-
-    private void OnButtonNum8Click(Object s, EventArgs e)
-    {
-        ParsingNumber("8");
-    }
-
-    private void OnButtonNum9Click(Object s, EventArgs e)
-    {
-        ParsingNumber("9");
-    }
-
-    private void OnButtonNum0Click(Object s, EventArgs e)
-    {
-        ParsingNumber("0");
     }
     
 }
