@@ -71,7 +71,7 @@
                         CommandParameter="0">
                 </Button>
                 <Button Text="=" FontAttributes="Bold,Italic" FontSize="18" WidthRequest="64" HeightRequest="64"
-                        Command="{Binding OperatorCommand  }"
+                        Command="{Binding CalculateCommand  }"
                         CommandParameter="=">
                 </Button>
                 <Button Text="/" FontAttributes="Bold,Italic" FontSize="18" WidthRequest="64" HeightRequest="64"
