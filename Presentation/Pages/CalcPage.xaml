@@ -6,7 +6,7 @@
              xmlns:vm="clr-namespace:CalcMaui.Presentation.ViewModels"
              xmlns:viewModels="clr-namespace:CalcMaui.Presentation.ViewModels"
              x:DataType="viewModels:CalcViewModel"
-             x:Class="CalcMaui.CalcPage">
+             x:Class="CalcMaui.Presentation.Pages.CalcPage">
     <!-- Can not be change dynamically, can not have constructor parameter -->
     <!-- <ContentPage.BindingContext> -->
     <!--     <vm:CalcViewModel></vm:CalcViewModel> -->

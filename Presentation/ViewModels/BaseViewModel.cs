@@ -1,11 +1,12 @@
 using CalcMaui.Presentation.Navigation;
+using CalcMaui.Presentation.Pages;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace CalcMaui.Presentation.ViewModels;
 
-public partial class BaseViewModel(IAppNavigation navigation) : ObservableObject
+public abstract class BaseViewModel(IAppNavigation navigation) : ObservableObject
 {
-    protected IAppNavigation Navigation { get; } = navigation;
+    private IAppNavigation Navigation { get; } = navigation;
 
     protected async void OnLoadingModal()
     {

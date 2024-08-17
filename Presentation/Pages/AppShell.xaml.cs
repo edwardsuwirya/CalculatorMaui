@@ -1,4 +1,4 @@
-﻿namespace CalcMaui;
+﻿namespace CalcMaui.Presentation.Pages;
 
 public partial class AppShell : Shell
 {

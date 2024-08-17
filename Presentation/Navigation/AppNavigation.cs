@@ -1,7 +1,23 @@
 namespace CalcMaui.Presentation.Navigation;
 
-public class AppNavigation(INavigation appNavigation) : IAppNavigation
+public class AppNavigation : IAppNavigation
 {
+    private INavigation PageNav
+    {
+        get
+        {
+            var pageNavigation = Application.Current?.MainPage?.Navigation;
+            if (pageNavigation is not null)
+            {
+                return pageNavigation;
+            }
+            else
+            {
+                throw new NullReferenceException();
+            }
+        }
+    }
+
     public Task NavigateTo(string route, IDictionary<string, object>? parameters)
     {
         return parameters is null ? Shell.Current.GoToAsync(route) : Shell.Current.GoToAsync(route, parameters);
@@ -9,11 +25,11 @@ public class AppNavigation(INavigation appNavigation) : IAppNavigation
 
     public Task PushModal(Page page)
     {
-        return appNavigation.PushModalAsync(page);
+        return PageNav.PushModalAsync(page);
     }
 
     public Task PopModal()
     {
-        return appNavigation.PopModalAsync();
+        return PageNav.PopModalAsync();
     }
 }
