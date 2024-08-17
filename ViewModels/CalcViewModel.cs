@@ -74,13 +74,16 @@ public class CalcViewModel : INotifyPropertyChanged
 
         OperatorCommand = new Command<string>((opr) => { Operator = opr; });
 
-        CalculateCommand = new Command(() =>
-        {
-            _num2 = int.Parse(DisplayText);
-            DisplayText = Calculate(_num1, _num2, Operator).ToString();
-            Reset();
-            _isFinish = true;
-        });
+        CalculateCommand = new Command(DoCalculation);
+    }
+
+    private async void DoCalculation()
+    {
+        _num2 = int.Parse(DisplayText);
+        var result = await Calculate(_num1, _num2, Operator);
+        DisplayText = result.ToString();
+        Reset();
+        _isFinish = true;
     }
 
     private void Reset()
@@ -89,9 +92,10 @@ public class CalcViewModel : INotifyPropertyChanged
         _num2 = 0;
         _operator = "";
     }
-    
-    private int Calculate(int value1, int value2, string mathOperator)
+
+    private async Task<int> Calculate(int value1, int value2, string mathOperator)
     {
+        await Task.Delay(2000);
         return mathOperator switch
         {
             "+" => value1 + value2,
