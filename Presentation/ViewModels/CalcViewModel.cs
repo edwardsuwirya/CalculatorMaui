@@ -1,4 +1,5 @@
 using CalcMaui.Data.State;
+using CalcMaui.Domain.Model;
 using CalcMaui.Domain.Repository;
 using CalcMaui.Presentation.Navigation;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -64,10 +65,17 @@ public partial class CalcViewModel : BaseViewModel
         {
             OnLoadingModal();
             _num2 = int.Parse((string)DisplayText);
-            var r = await _calcRepository.DoCalculate(_num1, _num2, _operatorText);
+
+            var matchCalc = new MathCalculation
+            {
+                Num1 = _num1,
+                Num2 = _num2,
+                Opr = _operatorText
+            };
+            var r = await _calcRepository.DoCalculate(matchCalc);
             r.DisplayResult(successAction: () =>
             {
-                DisplayText = r.Value.ToString();
+                DisplayText = r.Value.Result.ToString();
                 OnDismissLoadingModal();
             }, failureAction: () =>
             {

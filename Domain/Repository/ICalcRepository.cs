@@ -1,8 +1,9 @@
 using CalcMaui.Data.State;
+using CalcMaui.Domain.Model;
 
 namespace CalcMaui.Domain.Repository;
 
 public interface ICalcRepository
 {
-    public Task<Result<long>> DoCalculate(int num1, int num2, string op);
+    public Task<Result<MathCalculation>> DoCalculate(MathCalculation mathCalculation);
 }

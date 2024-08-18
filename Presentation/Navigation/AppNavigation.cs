@@ -18,7 +18,9 @@ public class AppNavigation : IAppNavigation
         }
     }
 
-    public Task NavigateTo(string route, IDictionary<string, object>? parameters)
+    public Task InitializeAsync() => NavigateTo("//CalcPage");
+
+    public Task NavigateTo(string route, IDictionary<string, object>? parameters = null)
     {
         return parameters is null ? Shell.Current.GoToAsync(route) : Shell.Current.GoToAsync(route, parameters);
     }
