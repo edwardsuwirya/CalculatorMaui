@@ -2,10 +2,49 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CalcMaui.Presentation"
              Shell.NavBarIsVisible="False"
              x:Class="CalcMaui.CalcPage">
     <ContentPage.Content>
         <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="16">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <!-- <Entry Placeholder="Number 1" local:OnlyNumericValidation.AttachBehavior="true"></Entry> -->
+                <!-- <Entry Grid.Column="1" Placeholder="Number 2" local:OnlyNumericValidation.AttachBehavior="true"></Entry> -->
+
+                <Entry Placeholder="Number 1">
+                    <Entry.Behaviors>
+                        <local:OnlyNumericBehavior></local:OnlyNumericBehavior>
+                        <local:RangeNumericValidation 
+                            MinNumber="2" MaxNumber="5"
+                            OnError="RangeNumericValidation_OnError"></local:RangeNumericValidation>
+                    </Entry.Behaviors>
+                </Entry>
+                <Entry Grid.Column="1" Placeholder="Number 2">
+                    <Entry.Behaviors>
+                        <local:OnlyNumericBehavior></local:OnlyNumericBehavior>
+                    </Entry.Behaviors>
+                </Entry>
+            </Grid>
+            <HorizontalStackLayout Spacing="16">
+                <Button Text="+" FontAttributes="Bold,Italic" FontSize="18" WidthRequest="64" HeightRequest="64"
+                        Clicked="OnButtonAdditionClick">
+                </Button>
+                <Button Text="*" FontAttributes="Bold,Italic" FontSize="18" WidthRequest="64" HeightRequest="64"
+                        Clicked="OnButtonMultiplicationClick">
+                </Button>
+                <Button Text="-" FontAttributes="Bold,Italic" FontSize="18" WidthRequest="64" HeightRequest="64"
+                        Clicked="OnButtonSubtractionClick">
+                </Button>
+                <Button Text="/" FontAttributes="Bold,Italic" FontSize="18" WidthRequest="64" HeightRequest="64"
+                        Clicked="OnButtonDivisionClick">
+                </Button>
+            </HorizontalStackLayout>
+            <Button Text="=" FontAttributes="Bold,Italic" FontSize="18" Clicked="OnButtonEqualClick">
+            </Button>
             <Label x:Name="CalcResultLabel" Text="0"
                    TextColor="Black"
                    FontSize="18"
@@ -15,40 +54,6 @@
                 Margin="0,0,0,10"
                 HeightRequest="3"
                 HorizontalOptions="Fill" />
-            <HorizontalStackLayout Spacing="16">
-                <Button Text="7" WidthRequest="64" HeightRequest="64" Clicked="OnButtonNum7Click"></Button>
-                <Button Text="8" WidthRequest="64" HeightRequest="64" Clicked="OnButtonNum8Click"></Button>
-                <Button Text="9" WidthRequest="64" HeightRequest="64" Clicked="OnButtonNum9Click"></Button>
-                <Button Text="+" FontAttributes="Bold,Italic" FontSize="18" WidthRequest="64" HeightRequest="64"
-                        Clicked="OnButtonAdditionClick">
-                </Button>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout Spacing="16">
-                <Button Text="4" WidthRequest="64" HeightRequest="64" Clicked="OnButtonNum4Click"></Button>
-                <Button Text="5" WidthRequest="64" HeightRequest="64" Clicked="OnButtonNum5Click"></Button>
-                <Button Text="6" WidthRequest="64" HeightRequest="64" Clicked="OnButtonNum6Click"></Button>
-                <Button Text="-" FontAttributes="Bold,Italic" FontSize="18" WidthRequest="64" HeightRequest="64"
-                        Clicked="OnButtonSubtractionClick">
-                </Button>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout Spacing="16">
-                <Button Text="1" WidthRequest="64" HeightRequest="64" Clicked="OnButtonNum1Click"></Button>
-                <Button Text="2" WidthRequest="64" HeightRequest="64" Clicked="OnButtonNum2Click"></Button>
-                <Button Text="3" WidthRequest="64" HeightRequest="64" Clicked="OnButtonNum3Click"></Button>
-                <Button Text="*" FontAttributes="Bold,Italic" FontSize="18" WidthRequest="64" HeightRequest="64"
-                        Clicked="OnButtonMultiplicationClick">
-                </Button>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout Spacing="16">
-                <Rectangle WidthRequest="64" HeightRequest="64"></Rectangle>
-                <Button Text="0" WidthRequest="64" HeightRequest="64" Clicked="OnButtonNum0Click"></Button>
-                <Button Text="=" FontAttributes="Bold,Italic" FontSize="18" WidthRequest="64" HeightRequest="64"
-                        Clicked="OnButtonEqualClick">
-                </Button>
-                <Button Text="/" FontAttributes="Bold,Italic" FontSize="18" WidthRequest="64" HeightRequest="64"
-                        Clicked="OnButtonDivisionClick">
-                </Button>
-            </HorizontalStackLayout>
         </VerticalStackLayout>
     </ContentPage.Content>
 </ContentPage>

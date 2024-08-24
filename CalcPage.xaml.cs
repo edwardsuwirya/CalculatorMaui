@@ -7,13 +7,13 @@ public partial class CalcPage : ContentPage
     private int? _result = 0;
 
     private bool _isDoneCalc;
-    
+
     public CalcPage()
     {
         InitializeComponent();
     }
-    
-      private void ParsingNumber(string sNumber)
+
+    private void ParsingNumber(string sNumber)
     {
         if (sNumber == "R")
         {
@@ -136,5 +136,9 @@ public partial class CalcPage : ContentPage
     {
         ParsingNumber("0");
     }
-    
+
+    private void RangeNumericValidation_OnError(object? sender, string e)
+    {
+        DisplayAlert("Error", e, "OK");
+    }
 }
